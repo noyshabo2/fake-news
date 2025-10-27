@@ -41,3 +41,4 @@ A Hebrew news and culture website for Tel Aviv residents and visitors, focusing 
 - **Colors**: Red (#e20613) as primary brand color
 - **Typography**: Hebrew fonts (Heebo) with clean, modern design
 - **Tone**: Urban, contemporary, culturally aware
+

@@ -55,3 +55,4 @@ src/app/
 - **CSS Grid**: For layout (articles grid, footer columns)
 - **Flexbox**: For smaller component layouts
 - **CSS Custom Properties**: For theming and consistent spacing
+

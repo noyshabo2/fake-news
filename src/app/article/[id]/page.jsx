@@ -48,12 +48,20 @@ export default async function Article({ params }) {
   console.log('Manual test - Matches current ID:', testDecoded === decodedId)
   console.log('=== End Debug ===')
   
-  // Route to the correct article component based on decoded ID
+  // Route to the correct article component based on decoded ID or slug
   switch (decodedId) {
+    // Hebrew URLs
     case 'נוכל-הדייטים-מתל-אביב':
       return <ArticlePage />
     case 'האקרית-שהצילה-את-wix':
       return <ArticlePage2 />
+    
+    // English SEO-friendly slugs
+    case 'dating-scammer-tel-aviv':
+      return <ArticlePage />
+    case 'hacker-who-saved-wix':
+      return <ArticlePage2 />
+    
     // Fallback: check for encoded URLs directly
     case '%D7%A0%D7%95%D7%9B%D7%9C-%D7%94%D7%93%D7%99%D7%99%D7%98%D7%99%D7%9D-%D7%9E%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91':
       return <ArticlePage />
@@ -80,10 +88,14 @@ export default async function Article({ params }) {
             <p><strong>Original ID:</strong> {id}</p>
             <p><strong>Decoded ID:</strong> {decodedId}</p>
             <p><strong>ID has %:</strong> {id.includes('%') ? 'Yes' : 'No'}</p>
-            <p><strong>Expected 1:</strong> נוכל-הדייטים-מתל-אביב</p>
-            <p><strong>Expected 2:</strong> האקרית-שהצילה-את-wix</p>
-            <p><strong>Match 1:</strong> {decodedId === 'נוכל-הדייטים-מתל-אביב' ? 'YES' : 'NO'}</p>
-            <p><strong>Match 2:</strong> {decodedId === 'האקרית-שהצילה-את-wix' ? 'YES' : 'NO'}</p>
+            <p><strong>Expected Hebrew 1:</strong> נוכל-הדייטים-מתל-אביב</p>
+            <p><strong>Expected Hebrew 2:</strong> האקרית-שהצילה-את-wix</p>
+            <p><strong>Expected English 1:</strong> dating-scammer-tel-aviv</p>
+            <p><strong>Expected English 2:</strong> hacker-who-saved-wix</p>
+            <p><strong>Match Hebrew 1:</strong> {decodedId === 'נוכל-הדייטים-מתל-אביב' ? 'YES' : 'NO'}</p>
+            <p><strong>Match Hebrew 2:</strong> {decodedId === 'האקרית-שהצילה-את-wix' ? 'YES' : 'NO'}</p>
+            <p><strong>Match English 1:</strong> {decodedId === 'dating-scammer-tel-aviv' ? 'YES' : 'NO'}</p>
+            <p><strong>Match English 2:</strong> {decodedId === 'hacker-who-saved-wix' ? 'YES' : 'NO'}</p>
             <p><strong>Manual test decode:</strong> {decodeURIComponent('%D7%94%D7%90%D7%A7%D7%A8%D7%99%D7%AA-%D7%A9%D7%94%D7%A6%D7%99%D7%9C%D7%94-%D7%90%D7%AA-wix')}</p>
           </div>
         </div>
@@ -93,7 +105,13 @@ export default async function Article({ params }) {
 
 export function generateStaticParams() {
   return [
+    // Hebrew URLs (encoded)
     { id: encodeURIComponent('נוכל-הדייטים-מתל-אביב') },
-    { id: encodeURIComponent('האקרית-שהצילה-את-wix') }
+    { id: encodeURIComponent('האקרית-שהצילה-את-wix') },
+    
+    // English SEO-friendly slugs
+    { id: 'dating-scammer-tel-aviv' },
+    { id: 'hacker-who-saved-wix' }
   ]
 }
+

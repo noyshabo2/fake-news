@@ -78,6 +78,25 @@ export function generateArticleUrl(articleId, useSeoFriendly = false) {
 }
 
 /**
+ * Find article by slug (English SEO-friendly URL)
+ * @param {string} slug - English slug to search for
+ * @returns {object|null} - Article info with Hebrew key or null if not found
+ */
+export function getArticleBySlug(slug) {
+  console.log('🔍 Looking for article by slug:', slug)
+  
+  for (const [hebrewKey, articleInfo] of Object.entries(ARTICLE_ROUTES)) {
+    if (articleInfo.slug === slug) {
+      console.log('✅ Found article by slug:', hebrewKey)
+      return { ...articleInfo, hebrewKey }
+    }
+  }
+  
+  console.log('❌ No article found for slug:', slug)
+  return null
+}
+
+/**
  * Get article info by ID (decoded or encoded) with multiple fallback attempts
  * @param {string} id - Article ID (can be encoded or decoded)
  * @returns {object|null} - Article info or null if not found
@@ -85,7 +104,14 @@ export function generateArticleUrl(articleId, useSeoFriendly = false) {
 export function getArticleInfo(id) {
   console.log('🔍 Getting article info for:', id)
   
-  // Try direct lookup first (in case it's already the right key)
+  // Try slug lookup first (for English SEO URLs)
+  const articleBySlug = getArticleBySlug(id)
+  if (articleBySlug) {
+    console.log('✅ Found article with slug lookup')
+    return articleBySlug
+  }
+  
+  // Try direct lookup (Hebrew key)
   if (ARTICLE_ROUTES[id]) {
     console.log('✅ Found article with direct lookup')
     return ARTICLE_ROUTES[id]

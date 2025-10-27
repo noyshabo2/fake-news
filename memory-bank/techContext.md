@@ -58,3 +58,4 @@ npm start      # Start production server
 - **next.config.mjs**: Next.js configuration
 - **jsconfig.json**: JavaScript/TypeScript configuration
 - **postcss.config.mjs**: CSS processing configuration
+

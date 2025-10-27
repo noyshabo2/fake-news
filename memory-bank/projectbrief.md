@@ -30,3 +30,4 @@ A Hebrew language news and culture website inspired by Time Out Tel Aviv, featur
 - Navigation works between homepage and articles
 - Responsive design works on mobile and desktop
 - Images and styling load correctly
+
